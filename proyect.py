@@ -65,11 +65,43 @@ def maclaurin_sinh(x):
         result += (x ** n) / factorial
     return result
 
+def maclaurin_arctan(x):
+    """
+    Вычисляет приближенное значение arctan(x) с помощью ряда Маклорена.
+
+    Ряд Маклорена для arctan(x):
+    arctan(x) = x - x^3 / 3 + x^5 / 5 - x^7 / 7 + ...
+
+    Аргументы:
+    x (float): Значение x в формуле для arctan(x).
+
+    Возвращаемое значение:
+    float: Приближенное значение arctan(x).
+
+    Исключения:
+    ValueError: Если x не является действительным числом.
+
+    Пример:
+    >>> maclaurin_arctan(1)
+    0.7853981633974483
+    """
+    if not isinstance(x, (int, float)):
+        raise ValueError("Значение x должно быть действительным числом.")
+    
+    result = 0
+    sign = 1
+    for n in range(1, ITERATIONS * 2, 2):  # Только нечетные степени
+        result += sign * (x ** n) / n
+        sign *= -1  # Чередование знаков
+    return result
+
+
 def menu():
 
     while True:
         print("1. first function")
         print("2. second function")
+        print("3. third function")
         print("4. exit")
 
         try:
@@ -80,6 +112,9 @@ def menu():
             elif option == 2:
                 x = float(input("Введите значение x: "))
                 print(f"Результат sinh({x}): {maclaurin_sinh(x)}")
+            elif option == 3:
+                x = float(input("Введите значение x: "))
+                print(f"Результат arctan({x}): {maclaurin_arctan(x)}")
             elif option == 4:
                 print("До свидания!")
                 break
