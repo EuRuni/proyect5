@@ -97,12 +97,15 @@ def maclaurin_arctan(x):
 
 
 def menu():
-
+    """
+    Отображает меню, чтобы пользователь выбрал функцию и вычислил ее значение.
+    """
     while True:
-        print("1. first function")
-        print("2. second function")
-        print("3. third function")
-        print("4. exit")
+        print("\nМеню:")
+        print("1. Вычислить e^x с помощью ряда Маклорена")
+        print("2. Вычислить sinh(x) с помощью ряда Маклорена")
+        print("3. Вычислить arctan(x) с помощью ряда Маклорена")
+        print("4. Выйти")
 
         try:
             option = int(input("Выберите опцию (1-4): "))
